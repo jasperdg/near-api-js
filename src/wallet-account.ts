@@ -85,7 +85,8 @@ export class WalletConnection {
         const accessKey = KeyPair.fromRandom('ed25519');
         newUrl.searchParams.set('public_key', accessKey.getPublicKey().toString());
         await this._keyStore.setKey(this._networkId, PENDING_ACCESS_KEY_PREFIX + accessKey.getPublicKey(), accessKey);
-        window.location.assign(newUrl.toString());
+
+        window.open(newUrl.toString());
     }
 
     /**
@@ -103,7 +104,7 @@ export class WalletConnection {
             .join(','));
         newUrl.searchParams.set('callbackUrl', callbackUrl || currentUrl.href);
 
-        window.location.assign(newUrl.toString());
+        window.close()
     }
 
     /**
